@@ -32,7 +32,7 @@ fun main() {
     // 对于推断类型
     // 编译器假设有初始值的变量为非空类型，此时再设置null会报错
     var inferredNonNull = "The compiler assumes non-null"
-    inferredNonNull = null
+//    inferredNonNull = null
 
     // 定义一个方法只接受非空类型的变量
     fun strLength(notNull: String): Int {
@@ -41,7 +41,7 @@ fun main() {
 
     strLength(neverNull)
     // 报错，因为是可为空的变量
-    strLength(nullable)
+//    strLength(nullable)
 
     // 定义一个方法接受非空类型的变量
     fun strLength(notNull: String?): Int? {
@@ -64,7 +64,8 @@ fun main() {
     // 这里可能是 nullable
     nullable = setValue(1)
     // 直接调用length会提示，如果使用断言操作符 !!
-    println(nullable.length)
+//    println(nullable.length)
+
     // 断言不会为空就不会提示
     println(nullable!!.length)
 }
