@@ -65,6 +65,20 @@ object DoAuth {                                                 //1
     }
 }
 
+/*
+companion object 被编译成 Java 的一个静态内部类。当你在 Kotlin 代码中使用 companion object 时，
+它会在 Java 中生成一个名为 Companion 的静态内部类。这个类包含了所有原始 companion object 中的方法和属性。
+如果在属性或方法上加上注解 @JvmStatic ，就会生成一个纯静态属性/方法，而不是静态内部类。
+*/
+class BigBen {                                  //1
+    companion object Bonger {                   //2
+        fun getBongs(nTimes: Int) {             //3
+            for (i in 1 .. nTimes) {
+                print("BONG ")
+            }
+        }
+    }
+}
 
 fun main() {
     rentPrice(10, 2, 1)
@@ -82,7 +96,12 @@ fun main() {
     myClickable2.click()
 
     println(" ")
-    // 调用的时候，才生成对象。与java的静态类不同，其实是kotlin生成了一个单例对象，是单例模式的一个实现。
+    // 与java的静态类不同，其实是kotlin生成了一个单例对象，是单例模式的一个实现。
+    // 调用的时候，才生成对象。而static是加载时初始化
     DoAuth.takeParams("foo", "qwerty")
-
+    println(" ")
+    // 调用companion object，内部类的名字可以忽略
+    BigBen.getBongs(12)
+    println(" ")
+    BigBen.Bonger.getBongs(12);
 }
